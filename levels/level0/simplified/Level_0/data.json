@@ -1,0 +1,69 @@
+{
+	"identifier": "Level_0",
+	"uniqueIdentifer": "72211810-6280-11ee-881e-b1b20d175321",
+	"x": 0,
+	"y": 0,
+	"width": 608,
+	"height": 400,
+	"bgColor": "#696969",
+	"neighbourLevels": [
+		{
+			"levelIid": "b4234890-6280-11ee-881e-b1c75e71d5f8",
+			"dir": "e"
+		}
+	],
+	"customFields" : {},
+	"layers": [
+		"Tiles.png"
+	],
+	"entities": {
+		"Line": [
+			{
+				"id": "Line",
+				"iid": "e26d1f70-6280-11ee-881e-c5ead1a84534",
+				"layer": "Entities",
+				"x": 0,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields": {
+					"Point": [
+						{
+							"cx": 0,
+							"cy": 13
+						},
+						{
+							"cx": 6,
+							"cy": 13
+						},
+						{
+							"cx": 6,
+							"cy": 6
+						},
+						{
+							"cx": 13,
+							"cy": 6
+						},
+						{
+							"cx": 13,
+							"cy": 16
+						},
+						{
+							"cx": 23,
+							"cy": 16
+						},
+						{
+							"cx": 23,
+							"cy": 11
+						},
+						{
+							"cx": 37,
+							"cy": 11
+						}
+					]
+				}
+			}
+		]
+	}
+}
