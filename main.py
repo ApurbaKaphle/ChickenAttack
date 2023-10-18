@@ -4,8 +4,6 @@ from enemies import Enemy
 from map import Map
 from turret import Turret
 
-# testing commits
-
 #-------------------------------------------------------constants-------------------------------------------------------#
 xRows = 38
 yCols = 25
