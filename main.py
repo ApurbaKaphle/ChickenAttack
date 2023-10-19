@@ -18,7 +18,7 @@ pg.init()
 game_screen = pg.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 clock = pg.time.Clock()
 
-pg.display.set_caption('Chicken Attack')
+pg.display.set_caption('Chicken Attack!')
 
 #-------------------------------------------------------images-------------------------------------------------------#
 # map
