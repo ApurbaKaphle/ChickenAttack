@@ -20,7 +20,7 @@ class Enemy(pg.sprite.Sprite):
         self.rect.center = self.pos
 
         # stats
-        self.speed = 0.5
+        self.speed = 1
 
     def update(self):
         self.move()
