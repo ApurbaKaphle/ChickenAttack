@@ -46,11 +46,13 @@ def create_turret(mouse_pos):
     mouse_tile_x = mouse_pos[0] // xTileSize
     mouse_tile_y = mouse_pos[1] // yTileSize
 
-    #space_is_free = True
-    #for turret in turret_grp:
-    #    if (mouse_tile_x, mouse_tile_y) == (tur)
-    turret = Turret(cursor_turret, mouse_tile_x, mouse_tile_y)
-    turret_grp.add(turret)
+    space_is_free = True
+    for turret in turret_grp:
+        if (mouse_tile_x, mouse_tile_y) == (turret.tile_x, turret.tile_y):
+            space_is_free = False
+    if space_is_free == True:      
+        new_turret = Turret(cursor_turret, mouse_tile_x, mouse_tile_y)
+        turret_grp.add(new_turret)
 
 
 map = Map(data, map_image)
@@ -88,7 +90,7 @@ while game_running:
     # draw grps
     enemy_grp.draw(game_screen)
     turret_grp.draw(game_screen)
-
+    
     # draw buttons
     if turret_button.draw(game_screen):
         placing_turrets = True
