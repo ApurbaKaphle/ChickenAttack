@@ -30,10 +30,17 @@ class Map():
 
             self.placeables.append((xcoord, ycoord))
 
-    def place_check(self):
+    def place_check(self, mouse_pos):
 
         for pts in self.placeables:
-            pass
+            x, xmax, xmin = mouse_pos[0], pts[0] + 32, pts[0] - 32
+            y, ymax, ymin = mouse_pos[1], pts[1] + 32, pts[1] - 32
+
+            if xmin <= x <= xmax and ymin <= y <= ymax:
+                return pts
+
+        return False
+
 
     def draw(self, surface):
         surface.blit(self.image, (0,0))

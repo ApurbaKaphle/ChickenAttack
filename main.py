@@ -119,8 +119,9 @@ while game_running:
             # check if mouse is in allowed area
             
             if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT:
-                if placing_turrets == True:
-                    create_turret(mouse_pos)
+                check = map.place_check(mouse_pos)
+                if placing_turrets and check:
+                    create_turret(check)
         
 
     pg.display.update()
