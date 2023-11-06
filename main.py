@@ -24,6 +24,7 @@ pg.display.set_caption('Chicken Attack!')
 
 #------------------------------------------------------Game Variables-----------------------------------------------------#
 placing_turrets = False
+selected_chicken = None
 
 #-------------------------------------------------------images-------------------------------------------------------#
 # map
@@ -53,7 +54,17 @@ def create_turret(mouse_pos):
     if space_is_free == True:      
         new_turret = Turret(cursor_turret, mouse_tile_x, mouse_tile_y)
         turret_grp.add(new_turret)
-
+           
+def select_chicken(mouse_pos):
+    mouse_tile_x = mouse_pos[0] // xTileSize
+    mouse_tile_y = mouse_pos[1] // yTileSize
+    for turret in turret_grp:
+        if (mouse_tile_x, mouse_tile_y) == (turret.tile_x, turret.tile_y):
+            return turret
+        
+def clear_selection():
+    for turret in turret_grp:
+        turret.selected = False
 
 map = Map(data, map_image)
 map.process_data()
@@ -67,8 +78,8 @@ enemy = Enemy(map.waypoints, enemy_image)
 enemy_grp.add(enemy)
 
 #adding buttons
-turret_button = Button(WINDOW_WIDTH + 100, 120, buy_turret_image)
-cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image)
+turret_button = Button(WINDOW_WIDTH + 100, 120, buy_turret_image, True)
+cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image, True)
 
 # game loop
 game_running = True
@@ -79,6 +90,10 @@ while game_running:
     game_screen.fill('#696969')
 
     map.draw(game_screen)
+
+    #selecting chicken
+    if selected_chicken:
+        selected_chicken.selected = True
     
     # adding points where turrets can be placed
     for pt in map.placeables:
@@ -89,7 +104,8 @@ while game_running:
 
     # draw grps
     enemy_grp.draw(game_screen)
-    turret_grp.draw(game_screen)
+    for turret in turret_grp:
+        turret.draw(game_screen)
     
     # draw buttons
     if turret_button.draw(game_screen):
@@ -120,9 +136,12 @@ while game_running:
             
             if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT:
                 check = map.place_check(mouse_pos)
+                selected_chicken = None
+                clear_selection()
                 if placing_turrets and check:
                     create_turret(check)
-        
+                else:
+                    selected_chicken = select_chicken(mouse_pos)
 
     pg.display.update()
 
