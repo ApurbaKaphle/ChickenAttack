@@ -29,7 +29,7 @@ placing_turrets = False
 # map
 map_image = pg.image.load('levels/level0/simplified/Level_0/tiles.png').convert_alpha()
 # turret
-cursor_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1.png'), 0.15)
+cursor_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1_edited.png'), 0.25)
 # enemies
 enemy_image = pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2.png').convert_alpha(), 0.15)
 # shop buttons
