@@ -29,7 +29,7 @@ placing_turrets = False
 # map
 map_image = pg.image.load('levels/level0/simplified/Level_0/tiles.png').convert_alpha()
 # turret
-cursor_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1.png'), 0.15)
+cursor_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1_edited.png'), 0.25)
 # enemies
 enemy_image = pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2.png').convert_alpha(), 0.15)
 # shop buttons
@@ -118,9 +118,10 @@ while game_running:
 
             # check if mouse is in allowed area
             
-            if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT and (mouse_pos[0], mouse_pos[1]) in map.placeables:
-                if placing_turrets == True:
-                    create_turret(mouse_pos)
+            if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT:
+                check = map.place_check(mouse_pos)
+                if placing_turrets and check:
+                    create_turret(check)
         
 
     pg.display.update()
