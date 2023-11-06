@@ -73,8 +73,6 @@ cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image)
 # game loop
 game_running = True
 
-
-
 while game_running:
     clock.tick(FPS)
 
@@ -82,8 +80,10 @@ while game_running:
 
     map.draw(game_screen)
     
-    # enemy path
-    pg.draw.lines(game_screen, 'red', False, map.waypoints)
+    # adding points where turrets can be placed
+    for pt in map.placeables:
+        rects = pg.Rect(pt, (32, 32))
+        pg.draw.rect(game_screen, 'red', rects, 2)
     # update grps
     enemy_grp.update()
 
@@ -118,7 +118,7 @@ while game_running:
 
             # check if mouse is in allowed area
             
-            if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT:
+            if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT and (mouse_pos[0], mouse_pos[1]) in map.placeables:
                 if placing_turrets == True:
                     create_turret(mouse_pos)
         
