@@ -30,5 +30,10 @@ class Map():
 
             self.placeables.append((xcoord, ycoord))
 
+    def place_check(self):
+
+        for pts in self.placeables:
+            pass
+
     def draw(self, surface):
         surface.blit(self.image, (0,0))

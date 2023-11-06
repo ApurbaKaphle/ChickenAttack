@@ -118,7 +118,7 @@ while game_running:
 
             # check if mouse is in allowed area
             
-            if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT and (mouse_pos[0], mouse_pos[1]) in map.placeables:
+            if mouse_pos[0] < WINDOW_WIDTH and mouse_pos[1] < WINDOW_HEIGHT:
                 if placing_turrets == True:
                     create_turret(mouse_pos)
         
