@@ -34,7 +34,8 @@ cursor_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chick
 # enemies
 enemy_image = pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2.png').convert_alpha(), 0.15)
 # shop buttons
-buy_turret_image = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1.png'), 0.3)
+buy_chicken_turret_image = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1.png'), 0.3)
+buy_potato_turret_image = pg.transform.scale_by(pg.image.load('assets/images/turrets/potato_turret.png'), 0.3)
 cancel_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/red_x.png'), 0.1)
 
 #-------------------------------------------------------Map-------------------------------------------------------#
@@ -78,7 +79,8 @@ enemy = Enemy(map.waypoints, enemy_image)
 enemy_grp.add(enemy)
 
 #adding buttons
-turret_button = Button(WINDOW_WIDTH + 100, 120, buy_turret_image, True)
+chicken_turret_button = Button(WINDOW_WIDTH + 40, 50, buy_chicken_turret_image, True)
+potato_turret_button = Button(WINDOW_WIDTH + 130, 15, buy_potato_turret_image, True)
 cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image, True)
 
 # game loop
@@ -108,7 +110,10 @@ while game_running:
         turret.draw(game_screen)
     
     # draw buttons
-    if turret_button.draw(game_screen):
+    if chicken_turret_button.draw(game_screen):
+        placing_turrets = True
+
+    if potato_turret_button.draw(game_screen):
         placing_turrets = True
 
     if placing_turrets ==True:
