@@ -33,8 +33,8 @@ class Map():
     def place_check(self, mouse_pos):
 
         for pts in self.placeables:
-            x, xmax, xmin = mouse_pos[0], pts[0] + 32, pts[0] - 32
-            y, ymax, ymin = mouse_pos[1], pts[1] + 32, pts[1] - 32
+            x, xmax, xmin = mouse_pos[0], pts[0] + 32, pts[0]
+            y, ymax, ymin = mouse_pos[1], pts[1] + 32, pts[1]
 
             if xmin <= x <= xmax and ymin <= y <= ymax:
                 return pts

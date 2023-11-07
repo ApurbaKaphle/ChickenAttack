@@ -140,8 +140,9 @@ while game_running:
                 clear_selection()
                 if placing_turrets and check:
                     create_turret(check)
-                else:
-                    selected_chicken = select_chicken(mouse_pos)
+                
+                elif not placing_turrets and check:
+                    selected_chicken = select_chicken(check)
 
     pg.display.update()
 
