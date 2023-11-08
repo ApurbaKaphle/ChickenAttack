@@ -1,15 +1,15 @@
 {
-	"identifier": "Level_0",
-	"uniqueIdentifer": "72211810-6280-11ee-881e-b1b20d175321",
-	"x": 0,
+	"identifier": "Level_1",
+	"uniqueIdentifer": "35e3c610-6280-11ee-8343-83d9519f8744",
+	"x": 304,
 	"y": 0,
 	"width": 608,
 	"height": 400,
 	"bgColor": "#696969",
 	"neighbourLevels": [
 		{
-			"levelIid": "b4234890-6280-11ee-881e-b1c75e71d5f8",
-			"dir": "e"
+			"levelIid": "72211810-6280-11ee-881e-b1b20d175321",
+			"dir": "w"
 		}
 	],
 	"customFields" : {},
@@ -20,7 +20,7 @@
 		"Line": [
 			{
 				"id": "Line",
-				"iid": "e26d1f70-6280-11ee-881e-c5ead1a84534",
+				"iid": "35e3ed21-6280-11ee-8343-0d1f7dc3f422",
 				"layer": "Entities",
 				"x": 0,
 				"y": 208,
@@ -68,7 +68,7 @@
 		"Turret_Placings": [
 			{
 				"id": "Turret_Placings",
-				"iid": "80481170-6280-11ee-99f2-49ab3257b51a",
+				"iid": "35e3ed22-6280-11ee-8343-39ac89ed4c3d",
 				"layer": "Entities",
 				"x": 96,
 				"y": 48,
@@ -81,7 +81,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "8a412b30-6280-11ee-99f2-8b4c465d9c97",
+				"iid": "35e41430-6280-11ee-8343-178e7e004834",
 				"layer": "Entities",
 				"x": 128,
 				"y": 208,
@@ -94,7 +94,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "8f128960-6280-11ee-99f2-033e2115c777",
+				"iid": "35e41431-6280-11ee-8343-25f57477098f",
 				"layer": "Entities",
 				"x": 240,
 				"y": 96,
@@ -107,7 +107,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "ec08c120-6280-11ee-99f2-13b13a67d4b6",
+				"iid": "35e41432-6280-11ee-8343-d90328893bd6",
 				"layer": "Entities",
 				"x": 48,
 				"y": 160,
@@ -120,7 +120,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "edf10920-6280-11ee-99f2-fde311fc2f87",
+				"iid": "35e43b40-6280-11ee-8343-050ce6eb9564",
 				"layer": "Entities",
 				"x": 48,
 				"y": 96,
@@ -133,7 +133,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "f17a56f0-6280-11ee-99f2-c12355684b1a",
+				"iid": "35e43b41-6280-11ee-8343-3f0b66ff2d2e",
 				"layer": "Entities",
 				"x": 208,
 				"y": 48,
@@ -146,7 +146,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "f955c0d0-6280-11ee-99f2-8757b8153151",
+				"iid": "35e43b42-6280-11ee-8343-ed691f8ef9c9",
 				"layer": "Entities",
 				"x": 240,
 				"y": 192,
@@ -159,7 +159,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "fdf69920-6280-11ee-99f2-3932114cfdc3",
+				"iid": "35e4d780-6280-11ee-8343-4d1a0f848963",
 				"layer": "Entities",
 				"x": 208,
 				"y": 288,
@@ -172,7 +172,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "14698410-6280-11ee-99f2-c9c1b42e1e3b",
+				"iid": "35e4fe90-6280-11ee-8343-f155a7994525",
 				"layer": "Entities",
 				"x": 416,
 				"y": 128,
@@ -185,7 +185,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "420d79d0-6280-11ee-99f2-45aba93e8cf8",
+				"iid": "35e4fe91-6280-11ee-8343-d5f66e348733",
 				"layer": "Entities",
 				"x": 128,
 				"y": 128,
@@ -198,7 +198,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "48788ad0-6280-11ee-99f2-63d7262e9344",
+				"iid": "35e525a0-6280-11ee-8343-dfb022b7aaa7",
 				"layer": "Entities",
 				"x": 400,
 				"y": 256,
@@ -211,7 +211,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "4a6825d0-6280-11ee-99f2-cf2ad8313b1f",
+				"iid": "35e525a1-6280-11ee-8343-e3413e5cb1af",
 				"layer": "Entities",
 				"x": 304,
 				"y": 288,
@@ -224,7 +224,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "4c4dfcd0-6280-11ee-99f2-d186f47b6c81",
+				"iid": "35e525a2-6280-11ee-8343-43fe21375d4d",
 				"layer": "Entities",
 				"x": 464,
 				"y": 208,
@@ -237,7 +237,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "54f73e00-6280-11ee-99f2-6388d114e172",
+				"iid": "35e54cb0-6280-11ee-8343-1fe0c5c7e700",
 				"layer": "Entities",
 				"x": 80,
 				"y": 256,
@@ -250,7 +250,7 @@
 			},
 			{
 				"id": "Turret_Placings",
-				"iid": "5c0f09c0-6280-11ee-99f2-dfe0c8f4c0df",
+				"iid": "35e54cb1-6280-11ee-8343-4571ef15cbe3",
 				"layer": "Entities",
 				"x": 320,
 				"y": 176,

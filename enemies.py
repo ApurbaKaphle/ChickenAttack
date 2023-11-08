@@ -21,6 +21,7 @@ class Enemy(pg.sprite.Sprite):
 
         # stats
         self.speed = 1
+        
     def update(self):
         self.move()
         self.rotate()

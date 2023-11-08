@@ -25,10 +25,11 @@ pg.display.set_caption('Chicken Attack!')
 #------------------------------------------------------Game Variables-----------------------------------------------------#
 placing_turrets = False
 selected_chicken = None
+paused = False
 
 #-------------------------------------------------------images-------------------------------------------------------#
 # map
-map_image = pg.image.load('levels/level0/simplified/Level_0/tiles.png').convert_alpha()
+level1 = pg.image.load('levels/TD_Game/simplified/Level_1/tiles.png').convert_alpha()
 # turret
 chicken_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1_edited.png'), 0.25)
 potato_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/potato_turret.png'), 0.075)
@@ -38,11 +39,27 @@ enemy_image = pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2
 buy_chicken_turret_image = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1.png'), 0.3)
 buy_potato_turret_image = pg.transform.scale_by(pg.image.load('assets/images/turrets/potato_turret.png'), 0.2)
 cancel_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/red_x.png'), 0.1)
+# general buttons
+menu_button_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/menu_button.png'), 0.25)
 
 #-------------------------------------------------------Map-------------------------------------------------------#
 
-with open('levels/level0/simplified/Level_0/data.json') as file:
+with open('levels/TD_Game/simplified/Level_1/data.json') as file:
     data = json.load(file)
+
+def pause_check():
+
+    while True:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
+                quit()
+        
+        if menu_button.draw(game_screen):
+            break
+
+        pg.display.update()
+        clock.tick(15)
 
 def create_turret(mouse_pos):
 
@@ -68,7 +85,7 @@ def clear_selection():
     for turret in turret_grp:
         turret.selected = False
 
-map = Map(data, map_image)
+map = Map(data, level1)
 map.process_data()
 
 # groups
@@ -83,7 +100,7 @@ enemy_grp.add(enemy)
 chicken_turret_button = Button(WINDOW_WIDTH + 40, 50, buy_chicken_turret_image, True)
 potato_turret_button = Button(WINDOW_WIDTH + 150, 50, buy_potato_turret_image, True)
 cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image, True)
-
+menu_button = Button(WINDOW_WIDTH - 130, 10, menu_button_image, True)
 # game loop
 game_running = True
 
@@ -93,7 +110,6 @@ while game_running:
     game_screen.fill('#696969')
 
     map.draw(game_screen)
-
     #selecting chicken
     if selected_chicken:
         selected_chicken.selected = True
@@ -118,6 +134,10 @@ while game_running:
     if potato_turret_button.draw(game_screen):
         placing_turrets = True
         cursor_turret = potato_turret
+    
+    if menu_button.draw(game_screen):
+        pause_check()
+            
 
     if placing_turrets ==True:
         cursor_rect = cursor_turret.get_rect()
