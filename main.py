@@ -29,7 +29,8 @@ paused = False
 
 #-------------------------------------------------------images-------------------------------------------------------#
 # map
-level1 = pg.image.load('levels/TD_Game/simplified/Level_1/tiles.png').convert_alpha()
+pause_screen = pg.transform.scale_by(pg.image.load('levels/TD_Game/simplified/Level_0/Tiles.png').convert_alpha(), 0.5)
+level1 = pg.image.load('levels/TD_Game/simplified/Level_1/Tiles.png').convert_alpha()
 # turret
 chicken_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1_edited.png'), 0.25)
 potato_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/potato_turret.png'), 0.075)
@@ -48,7 +49,7 @@ with open('levels/TD_Game/simplified/Level_1/data.json') as file:
     data = json.load(file)
 
 def pause_check():
-
+    game_screen.blit(pause_screen, (0,0))
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -136,10 +137,9 @@ while game_running:
         cursor_turret = potato_turret
     
     if menu_button.draw(game_screen):
-        pause_check()
-            
+        pause_check()     
 
-    if placing_turrets ==True:
+    if placing_turrets:
         cursor_rect = cursor_turret.get_rect()
         cursor_pos = pg.mouse.get_pos()
         cursor_rect.center = cursor_pos
