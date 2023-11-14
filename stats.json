@@ -1,4 +1,10 @@
 {
+    "player": {
+
+        "health": 100,
+        "money": 100
+    }, 
+    
     "turrets": {
         "chicken turret":
             {"attack": 10, 
