@@ -135,12 +135,9 @@ while game_running:
     if potato_turret_button.draw(game_screen):
         placing_turrets = True
         cursor_turret = potato_turret
-<<<<<<< HEAD
-=======
     
     if menu_button.draw(game_screen):
         pause_check()     
->>>>>>> 7fe08af64cf97bf22ca60abb8caa62de7a216f53
 
     if placing_turrets:
         cursor_rect = cursor_turret.get_rect()
