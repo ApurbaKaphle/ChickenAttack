@@ -29,7 +29,6 @@ paused = False
 
 #-------------------------------------------------------images-------------------------------------------------------#
 # map
-pause_screen = pg.transform.scale_by(pg.image.load('levels/TD_Game/simplified/Level_0/Tiles.png').convert_alpha(), 0.5)
 level1 = pg.image.load('levels/TD_Game/simplified/Level_1/Tiles.png').convert_alpha()
 # turret
 chicken_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1_edited.png'), 0.25)
@@ -43,22 +42,33 @@ cancel_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/red_x.
 # general buttons
 menu_button_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/menu_button.png'), 0.25)
 
+pause_screen = pg.transform.scale_by(pg.image.load('assets/images/buttons/pause_screen.png').convert_alpha(), 0.5)
+pause_width, pause_height = pause_screen.get_size()
+menu_cont_image = pause_screen.subsurface(0, 0, pause_width, pause_height/3)
+menu_settings_image = pause_screen.subsurface(0, pause_height/3, pause_width, pause_height/3)
+menu_quit_image = pause_screen.subsurface(0, 2*pause_height/3, pause_width, pause_height/3)
 #-------------------------------------------------------Map-------------------------------------------------------#
 
 with open('levels/TD_Game/simplified/Level_1/data.json') as file:
     data = json.load(file)
 
 def pause_check():
-    game_screen.blit(pause_screen, (0,0))
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
                 quit()
         
-        if menu_button.draw(game_screen):
-            break
+        if menu_quit_button.draw(game_screen):
+            pg.quit()
+            quit()
 
+        if (menu_button.draw(game_screen) or menu_cont_button.draw(game_screen)):
+            break
+        
+        elif menu_settings_button.draw(game_screen):
+            print('test')
+            
         pg.display.update()
         clock.tick(15)
 
@@ -102,6 +112,10 @@ chicken_turret_button = Button(WINDOW_WIDTH + 40, 50, buy_chicken_turret_image, 
 potato_turret_button = Button(WINDOW_WIDTH + 150, 50, buy_potato_turret_image, True)
 cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image, True)
 menu_button = Button(WINDOW_WIDTH - 130, 10, menu_button_image, True)
+menu_cont_button = Button(WINDOW_WIDTH/2 - 175, 40, menu_cont_image, True)
+menu_settings_button = Button(WINDOW_WIDTH/2 - 175, 45 + pause_height/3, menu_settings_image, True)
+menu_quit_button = Button(WINDOW_WIDTH/2 - 175, 50 + 2*pause_height/3, menu_quit_image, True)
+
 # game loop
 game_running = True
 
@@ -124,8 +138,7 @@ while game_running:
 
     # draw grps
     enemy_grp.draw(game_screen)
-    for turret in turret_grp:
-        turret.draw(game_screen)
+    turret_grp.draw(game_screen)
     
     # draw buttons
     if chicken_turret_button.draw(game_screen):
