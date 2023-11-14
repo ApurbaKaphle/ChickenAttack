@@ -8,6 +8,11 @@ class Map():
         self.placeables = []
         self.image = map_image
         self.level_data = data
+
+        with open('levels/TD_Game/simplified/Level_1/data.json') as file:
+            self.player_stats = json.load(file)
+        self.health = json.load('stats.json')
+
     
 
     def process_data(self):

@@ -3,7 +3,7 @@ import math
 
 class Turret(pg.sprite.Sprite):
     
-    def __init__(self, image, tile_x, tile_y) -> None:
+    def __init__(self, sprite_sheet, tile_x, tile_y) -> None:
         pg.sprite.Sprite.__init__(self)
 
         self.range = 99
@@ -17,7 +17,11 @@ class Turret(pg.sprite.Sprite):
         self.y = (self.tile_y + 1) * 400/25 
         # -----------------------------#
         #updating images
-        self.image = image
+        self.sprite_sheet = sprite_sheet
+        self.animation_index = self.load_images()
+        self.frame = 0
+
+        self.image = self.animation_index[self.frame]
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y)
 
@@ -46,3 +50,12 @@ class Turret(pg.sprite.Sprite):
             dist = math.sqrt(x_dist **2 + y_dist ** 2)
             if dist < self.range:
                 self.target = enemy
+
+    #pulling image frames for the animation
+    def load_images(self):
+        box = self.sprite_sheet.get_height()
+        animation_list = []
+        for i in range(8):
+            img = self.sprite_sheet.subsurface(x * box, 0, box, box)
+            animation_list.append(img)
+        return animation_list
