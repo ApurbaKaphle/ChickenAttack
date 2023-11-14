@@ -31,7 +31,8 @@ class Map():
             self.placeables.append((xcoord, ycoord))
 
     def place_check(self, mouse_pos):
-
+        # method to make sure selected tower is being placed inside one of the placeable regions
+        
         for pts in self.placeables:
             x, xmax, xmin = mouse_pos[0], pts[0] + 32, pts[0]
             y, ymax, ymin = mouse_pos[1], pts[1] + 32, pts[1]

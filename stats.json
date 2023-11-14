@@ -1,0 +1,35 @@
+{
+    "turrets": {
+        "chicken turret":
+            {"attack": 10, 
+            "range": 99},
+
+        "potato turret":
+            {"attack": 10,
+            "range": 99}
+    },
+
+    "enemies": {
+        
+        "enemy1":
+            {"health": 20,
+            "speed": 1},
+
+        "enemy2":
+            {"health": 50,
+            "speed": 0.5},
+
+        "enemy3":
+            {"health": 10,
+            "speed": 2}
+
+    }
+
+    
+    
+
+
+
+
+
+}
