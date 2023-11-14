@@ -47,8 +47,8 @@ pause_width, pause_height = pause_screen.get_size()
 menu_cont_image = pause_screen.subsurface(0, 0, pause_width, pause_height/3)
 menu_settings_image = pause_screen.subsurface(0, pause_height/3, pause_width, pause_height/3)
 menu_quit_image = pause_screen.subsurface(0, 2*pause_height/3, pause_width, pause_height/3)
-#-------------------------------------------------------Map-------------------------------------------------------#
 
+#-------------------------------------------------------Functions-------------------------------------------------------#
 with open('levels/TD_Game/simplified/Level_1/data.json') as file:
     data = json.load(file)
 
@@ -68,7 +68,7 @@ def pause_check():
         
         elif menu_settings_button.draw(game_screen):
             print('test')
-            
+
         pg.display.update()
         clock.tick(15)
 
@@ -96,6 +96,7 @@ def clear_selection():
     for turret in turret_grp:
         turret.selected = False
 
+#-------------------------------------------------------Map-------------------------------------------------------#
 map = Map(data, level1)
 map.process_data()
 
@@ -107,22 +108,25 @@ enemy = Enemy(map.waypoints, enemy_image)
 
 enemy_grp.add(enemy)
 
-#adding buttons
+#-------------------------------------------------------Buttons-------------------------------------------------------#
+
+# turrets
 chicken_turret_button = Button(WINDOW_WIDTH + 40, 50, buy_chicken_turret_image, True)
 potato_turret_button = Button(WINDOW_WIDTH + 150, 50, buy_potato_turret_image, True)
+
 cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image, True)
 menu_button = Button(WINDOW_WIDTH - 130, 10, menu_button_image, True)
 menu_cont_button = Button(WINDOW_WIDTH/2 - 175, 40, menu_cont_image, True)
 menu_settings_button = Button(WINDOW_WIDTH/2 - 175, 45 + pause_height/3, menu_settings_image, True)
 menu_quit_button = Button(WINDOW_WIDTH/2 - 175, 50 + 2*pause_height/3, menu_quit_image, True)
 
-# game loop
+#-------------------------------------------------------Game Loop-------------------------------------------------------#
 game_running = True
 
 while game_running:
     clock.tick(FPS)
 
-    game_screen.fill('#696969')
+    game_screen.fill("#c77d0e")
 
     map.draw(game_screen)
     #selecting chicken
@@ -138,7 +142,9 @@ while game_running:
 
     # draw grps
     enemy_grp.draw(game_screen)
-    turret_grp.draw(game_screen)
+    
+    for turret in turret_grp:
+        turret.draw(game_screen)
     
     # draw buttons
     if chicken_turret_button.draw(game_screen):
