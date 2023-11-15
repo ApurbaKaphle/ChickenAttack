@@ -4,7 +4,7 @@ import json
 
 class Enemy(pg.sprite.Sprite):
 
-    def __init__(self, name, waypoints, image) -> None:
+    def __init__(self, name, waypoints, images) -> None:
         
         pg.sprite.Sprite.__init__(self)
 
@@ -15,19 +15,21 @@ class Enemy(pg.sprite.Sprite):
 
         # image information
         self.angle = 0
-        self.orig_image = image
+        self.orig_image = images.get(name)
         self.image = pg.transform.rotate(self.orig_image, self.angle)
         self.rect = self.image.get_rect()   
         self.rect.center = self.pos
 
         # stats
         self.stats = json.load(open('stats.json'))['enemies'][name]
-
-        self.speed = 1
+        self.health = self.stats['health']
+        self.speed = self.stats['speed']
+        self.reward = self.stats['reward']
         
-    def update(self):
+    def update(self, player):
         self.move()
         self.rotate()
+        self.alive(player)
 
 
     def move(self):
@@ -65,6 +67,7 @@ class Enemy(pg.sprite.Sprite):
         self.rect = self.image.get_rect()   
         self.rect.center = self.pos
     
-    def alive(self):
+    def alive(self, player):
         if self.health <= 0:
+            player.money += self.reward
             self.kill()

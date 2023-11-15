@@ -21,23 +21,27 @@
 
     "enemies": {
         
-        "enemy1":
-            {"health": 20,
-            "speed": 1},
+        "final_boss":
+            {"health": 100,
+            "speed": 0.5,
+            "reward": 100},
 
         "enemy2":
             {"health": 50,
-            "speed": 0.5},
+            "speed": 0.5,
+            "reward": 500},
 
         "enemy3":
             {"health": 10,
-            "speed": 2}
+            "speed": 2,
+            "reward": 25}
 
     },
 
     "enemy spawn": {
 
-        "enemy1": 15
+        "enemy3": 20,
+        "final_boss": 1
     }
 
     

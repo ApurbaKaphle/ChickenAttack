@@ -67,6 +67,9 @@ class Turret(pg.sprite.Sprite):
                 self.target = enemy
                 self.amgle = math.degrees(math.atan2(-y_dist, x_dist))
 
+                self.target.health -= self.attack
+                break
+
     #pulling image frames for the animation
     def load_images(self):
         box = self.sprite_sheet.get_height()
@@ -91,6 +94,5 @@ class Turret(pg.sprite.Sprite):
         if self.target:
             self.play_animation()
         else:
-            if pg.time.get_ticks() -self.last_shot > self.cooldown:
-                self.play_animation()
+            if pg.time.get_ticks() - self.last_shot > self.cooldown:
                 self.targetting(enemy_grp)
