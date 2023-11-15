@@ -57,6 +57,10 @@ pause_width, pause_height = pause_screen.get_size()
 menu_cont_image = pause_screen.subsurface(0, 0, pause_width, pause_height/3)
 menu_settings_image = pause_screen.subsurface(0, pause_height/3, pause_width, pause_height/3)
 menu_quit_image = pause_screen.subsurface(0, 2*pause_height/3, pause_width, pause_height/3)
+
+
+background_fx = pg.mixer.Sound('assets/audio/background.wav')
+background_fx.set_volume(0.01)
 #-------------------------------------------------------Functions-------------------------------------------------------#
 with open('levels/TD_Game/simplified/Level_1/data.json') as file:
     data = json.load(file)
@@ -145,6 +149,7 @@ menu_quit_button = Button(WINDOW_WIDTH/2 - 175, 50 + 2*pause_height/3, menu_quit
 
 #-------------------------------------------------------Game Loop-------------------------------------------------------#
 game_running = True
+background_fx.play()
 
 while game_running:
     clock.tick(FPS)
