@@ -50,7 +50,7 @@ cancel_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/red_x.
 # general buttons
 menu_button_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/menu_button.png'), 0.25)
 store_button_image = pg.transform.scale_by(pg.image.load('levels/TD_Game/simplified/Store_Button/Tiles.png').convert_alpha(), 0.75)
-start_button_image = pg.transform.scale_by(pg.image.load('levels/TD_Game/simplified/Start_Button/Tiles.png'), 0.25)
+start_button_image = pg.transform.scale_by(pg.image.load('levels/TD_Game/simplified/Start_Button/Tiles.png'), 1)
 
 pause_screen = pg.transform.scale_by(pg.image.load('assets/images/buttons/pause_screen.png').convert_alpha(), 0.5)
 pause_width, pause_height = pause_screen.get_size()
