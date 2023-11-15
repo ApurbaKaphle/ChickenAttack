@@ -26,6 +26,8 @@ pg.display.set_caption('Chicken Attack!')
 placing_turrets = False
 selected_chicken = None
 paused = False
+last_enemy_spawn = pg.time.get_ticks()
+start = False
 
 #-------------------------------------------------------images-------------------------------------------------------#
 # map
@@ -37,7 +39,8 @@ potato_animation = pg.transform.scale_by(pg.image.load('assets/images/turrets/po
 chicken_animation = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken_index.png'), 0.075)
 # enemies
 enemy_images = {
-    "final_boss": pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2.png').convert_alpha(), 0.15)
+    "final_boss": pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2.png').convert_alpha(), 0.15),
+    "enemy3": pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_3.png').convert_alpha(), 0.04)
 }
 
 # shop buttons
@@ -47,6 +50,7 @@ cancel_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/red_x.
 # general buttons
 menu_button_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/menu_button.png'), 0.25)
 store_button_image = pg.transform.scale_by(pg.image.load('levels/TD_Game/simplified/Store_Button/Tiles.png').convert_alpha(), 0.75)
+start_button_image = pg.transform.scale_by(pg.image.load('assets/images/buttons/start_button.png'), 0.25)
 
 pause_screen = pg.transform.scale_by(pg.image.load('assets/images/buttons/pause_screen.png').convert_alpha(), 0.5)
 pause_width, pause_height = pause_screen.get_size()
@@ -118,6 +122,7 @@ def clear_selection():
 #-------------------------------------------------------Map-------------------------------------------------------#
 map = Map(data, level1)
 map.process_data()
+map.process_enemies()
 
 # groups
 enemy_grp = pg.sprite.Group()
@@ -168,6 +173,15 @@ while game_running:
     draw_text(str(map.money), large_font, 'yellow', store_button.rect.midbottom[0], store_button.rect.midbottom[1])
 
     store_button.draw(game_screen)
+
+
+    if pg.time.get_ticks() - last_enemy_spawn > 1000:
+        if map.spawned_enemies < len(map.enemy_list):
+            enemy_type = map.enemy_list[map.spawned_enemies]
+            enemy = Enemy(enemy_type, map.waypoints, enemy_images)
+            enemy_grp.add(enemy)
+            map.spawned_enemies += 1
+            last_enemy_spawn = pg.time.get_ticks()
     
     # draw buttons
     if chicken_turret_button.draw(game_screen):

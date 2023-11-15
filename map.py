@@ -13,6 +13,9 @@ class Map():
         self.health = self.stats['health']
         self.money = self.stats['money']
 
+        self.enemy_list = []
+        self.spawned_enemies = 0
+
     
 
     def process_data(self):
@@ -36,14 +39,12 @@ class Map():
             self.placeables.append((xcoord, ycoord))
     
     def process_enemies(self):
-        enemies = json(open('stats.json'))['enemy_spawn']
+        enemies = json.load(open('stats.json'))['enemy spawn']
         for enemy_type in enemies:
             enemies_to_spawn = enemies[enemy_type]
             for enemy in range(enemies_to_spawn):
                 self.enemy_list.append(enemy_type)
-        
-        print(self.enemy_list)
-
+                
     def place_check(self, mouse_pos):
         # method to make sure selected tower is being placed inside one of the placeable regions
         
