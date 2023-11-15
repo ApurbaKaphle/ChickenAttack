@@ -28,12 +28,12 @@ class Enemy(pg.sprite.Sprite):
         self.attack = self.stats['attack']
         
     def update(self, player):
-        self.move()
+        self.move(player)
         self.rotate()
         self.alive(player)
 
 
-    def move(self):
+    def move(self, player):
         # target waypoint
 
         if self.target_waypoint < len(self.waypoints):
@@ -45,7 +45,7 @@ class Enemy(pg.sprite.Sprite):
         else:
             # enemy is at the end of the path
             self.kill()
-            map.health -= 1
+            player.health -= self.attack
 
         dist = self.movement.length()
         # check if distance left is more than enemy speed
