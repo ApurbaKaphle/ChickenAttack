@@ -45,6 +45,7 @@ class Enemy(pg.sprite.Sprite):
         else:
             # enemy is at the end of the path
             self.kill()
+            map.health -= 1
 
         dist = self.movement.length()
         # check if distance left is more than enemy speed
