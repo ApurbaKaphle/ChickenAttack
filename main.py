@@ -62,7 +62,7 @@ menu_settings_image = pause_screen.subsurface(0, pause_height/3, pause_width, pa
 menu_quit_image = pause_screen.subsurface(0, 2*pause_height/3, pause_width, pause_height/3)
 
 background_fx = pg.mixer.Sound('assets/audio/background.wav')
-background_fx.set_volume(0.01)
+background_fx.set_volume(0.1)
 
 #-------------------------------------------------------Functions-------------------------------------------------------#
 with open('levels/TD_Game/simplified/Level_1/data.json') as file:
@@ -212,8 +212,22 @@ while game_running:
             enemy_grp.empty()
             turret_grp.empty()
 
-    if game_over == True and game_outcome == 1:
+    elif game_over == True and game_outcome == 1:
         draw_text("You're the BEST", large_font, 'black', 100, (WINDOW_HEIGHT/2))
+        if new_game_button.draw(game_screen):
+            #reseting game
+            game_over = False
+            game_outcome = 0
+            map.health = 100
+            start = False
+            placing_turrets = False
+            selected_chicken = None
+            last_enemy_spawn = pg.time.get_ticks()
+            map = Map(data, level1)
+            map.process_data()
+            map.process_enemies()
+            enemy_grp.empty()
+            turret_grp.empty()
 
     if game_over == False:
         #time before game//start

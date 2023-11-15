@@ -33,7 +33,7 @@
             "reward": 500},
 
         "enemy3":
-            {"attack": 100,
+            {"attack": 2,
             "health": 20,
             "speed": 2,
             "reward": 25}
