@@ -28,6 +28,8 @@ selected_chicken = None
 paused = False
 last_enemy_spawn = pg.time.get_ticks()
 start = False
+game_over = False
+game_outcome = 0
 
 #-------------------------------------------------------images-------------------------------------------------------#
 # map
@@ -157,6 +159,13 @@ while game_running:
     game_screen.fill("#c77d0e")
 
     map.draw(game_screen)
+
+    # updating game over to 1/0
+    if game_over == False:
+        if map.health <= 0:
+            game_over = True
+            game_outcome = -1
+
     #selecting chicken
     if selected_chicken:
         selected_chicken.selected = True
@@ -180,45 +189,47 @@ while game_running:
 
     store_button.draw(game_screen)
 
-    #time before game//start
-    if start == False:
-        if start_button.draw(game_screen):
-            start = True
-    else:
-        #enemy spawns
-        if pg.time.get_ticks() - last_enemy_spawn > 1000:
-            if map.spawned_enemies < len(map.enemy_list):
-                enemy_type = map.enemy_list[map.spawned_enemies]
-                enemy = Enemy(enemy_type, map.waypoints, enemy_images)
-                enemy_grp.add(enemy)
-                map.spawned_enemies += 1
-                last_enemy_spawn = pg.time.get_ticks()
-    
-    # draw buttons
-    if chicken_turret_button.draw(game_screen):
-        placing_turrets = True
-        cursor_turret = chicken_turret
-        cursor_turret_name = 'chicken_turret'
-        cursor_animation = chicken_animation
+    #checks to see if you failed
+    if game_over == False:
+        #time before game//start
+        if start == False:
+            if start_button.draw(game_screen):
+                start = True
+        else:
+            #enemy spawns
+            if pg.time.get_ticks() - last_enemy_spawn > 1000:
+                if map.spawned_enemies < len(map.enemy_list):
+                    enemy_type = map.enemy_list[map.spawned_enemies]
+                    enemy = Enemy(enemy_type, map.waypoints, enemy_images)
+                    enemy_grp.add(enemy)
+                    map.spawned_enemies += 1
+                    last_enemy_spawn = pg.time.get_ticks()
+        
+        # draw buttons
+        if chicken_turret_button.draw(game_screen):
+            placing_turrets = True
+            cursor_turret = chicken_turret
+            cursor_turret_name = 'chicken_turret'
+            cursor_animation = chicken_animation
 
-    if potato_turret_button.draw(game_screen):
-        placing_turrets = True
-        cursor_turret = potato_turret
-        cursor_turret_name = 'potato_turret'
-        cursor_animation = potato_animation
-    
-    if menu_button.draw(game_screen):
-        pause_check()
+        if potato_turret_button.draw(game_screen):
+            placing_turrets = True
+            cursor_turret = potato_turret
+            cursor_turret_name = 'potato_turret'
+            cursor_animation = potato_animation
+        
+        if menu_button.draw(game_screen):
+            pause_check()
 
-    if placing_turrets:
-        cursor_rect = cursor_turret.get_rect()
-        cursor_pos = pg.mouse.get_pos()
-        cursor_rect.center = cursor_pos
-        if cursor_pos[0] <= WINDOW_WIDTH:
-            game_screen.blit(cursor_turret, cursor_rect)
+        if placing_turrets:
+            cursor_rect = cursor_turret.get_rect()
+            cursor_pos = pg.mouse.get_pos()
+            cursor_rect.center = cursor_pos
+            if cursor_pos[0] <= WINDOW_WIDTH:
+                game_screen.blit(cursor_turret, cursor_rect)
 
-        if cancel_button.draw(game_screen):
-            placing_turrets = False
+            if cancel_button.draw(game_screen):
+                placing_turrets = False
 
 
     for event in pg.event.get():

@@ -65,7 +65,7 @@ class Turret(pg.sprite.Sprite):
             dist = math.sqrt(x_dist **2 + y_dist ** 2)
             if dist < self.range:
                 self.target = enemy
-                self.amgle = math.degrees(math.atan2(-y_dist, x_dist))
+                self.angle = math.degrees(math.atan2(y_dist, -x_dist))
 
                 self.target.health -= self.attack
                 break
