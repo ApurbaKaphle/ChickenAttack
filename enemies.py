@@ -25,6 +25,7 @@ class Enemy(pg.sprite.Sprite):
         self.health = self.stats['health']
         self.speed = self.stats['speed']
         self.reward = self.stats['reward']
+        self.attack = self.stats['attack']
         
     def update(self, player):
         self.move()
