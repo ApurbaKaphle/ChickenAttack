@@ -1,9 +1,10 @@
 import pygame as pg
 from pygame.math import Vector2
+import json
 
 class Enemy(pg.sprite.Sprite):
 
-    def __init__(self, waypoints, image) -> None:
+    def __init__(self, name, waypoints, image) -> None:
         
         pg.sprite.Sprite.__init__(self)
 
@@ -20,6 +21,8 @@ class Enemy(pg.sprite.Sprite):
         self.rect.center = self.pos
 
         # stats
+        self.stats = json.load(open('stats.json'))['enemies'][name]
+
         self.speed = 1
         
     def update(self):
@@ -61,3 +64,7 @@ class Enemy(pg.sprite.Sprite):
         self.image = pg.transform.rotate(self.orig_image, self.angle)
         self.rect = self.image.get_rect()   
         self.rect.center = self.pos
+    
+    def alive(self):
+        if self.health <= 0:
+            self.kill()

@@ -34,8 +34,12 @@ level1 = pg.image.load('levels/TD_Game/simplified/Level_1/Tiles.png').convert_al
 chicken_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1_edited.png'), 0.25)
 potato_turret = pg.transform.scale_by(pg.image.load('assets/images/turrets/potato_turret.png'), 0.075)
 potato_animation = pg.transform.scale_by(pg.image.load('assets/images/turrets/potato_index.png'), 0.075)
+chicken_animation = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken_index.png'), 0.075)
 # enemies
-enemy_image = pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2.png').convert_alpha(), 0.15)
+enemy_images = {
+    "final_boss": pg.transform.scale_by(pg.image.load('assets/images/enemies/enemy_2.png').convert_alpha(), 0.15)
+}
+
 # shop buttons
 buy_chicken_turret_image = pg.transform.scale_by(pg.image.load('assets/images/turrets/chicken1.png'), 0.3)
 buy_potato_turret_image = pg.transform.scale_by(pg.image.load('assets/images/turrets/potato_turret.png'), 0.2)
@@ -49,10 +53,18 @@ pause_width, pause_height = pause_screen.get_size()
 menu_cont_image = pause_screen.subsurface(0, 0, pause_width, pause_height/3)
 menu_settings_image = pause_screen.subsurface(0, pause_height/3, pause_width, pause_height/3)
 menu_quit_image = pause_screen.subsurface(0, 2*pause_height/3, pause_width, pause_height/3)
-
 #-------------------------------------------------------Functions-------------------------------------------------------#
 with open('levels/TD_Game/simplified/Level_1/data.json') as file:
     data = json.load(file)
+
+# fonts
+text_font = pg.font.SysFont("Consolas", 24, bold = True)
+large_font = pg.font.SysFont("Consolas", 36)
+
+def draw_text(text, font, text_col, x, y):
+    img = font.render(text, True, text_col)
+
+    game_screen.blit(img, (x,y))
 
 def pause_check():
     while True:
@@ -74,7 +86,7 @@ def pause_check():
         pg.display.update()
         clock.tick(15)
 
-def create_turret(mouse_pos):
+def create_turret(mouse_pos, name, cursor_animation):
 
     mouse_tile_x = mouse_pos[0] // xTileSize
     mouse_tile_y = mouse_pos[1] // yTileSize
@@ -83,9 +95,14 @@ def create_turret(mouse_pos):
     for turret in turret_grp:
         if (mouse_tile_x, mouse_tile_y) == (turret.tile_x, turret.tile_y):
             space_is_free = False
+    
     if space_is_free == True:      
-        new_turret = Turret(potato_animation, mouse_tile_x, mouse_tile_y)
-        turret_grp.add(new_turret)
+        new_turret = Turret(name, cursor_animation, mouse_tile_x, mouse_tile_y)
+        if map.money >= new_turret.cost:
+            turret_grp.add(new_turret)
+
+            # give me your money
+            map.money -= new_turret.cost
            
 def select_chicken(mouse_pos):
     mouse_tile_x = mouse_pos[0] // xTileSize
@@ -106,17 +123,14 @@ map.process_data()
 enemy_grp = pg.sprite.Group()
 turret_grp = pg.sprite.Group()
 
-enemy = Enemy(map.waypoints, enemy_image)
-
-enemy_grp.add(enemy)
 
 #-------------------------------------------------------Buttons-------------------------------------------------------#
 
 # turrets
-chicken_turret_button = Button(WINDOW_WIDTH + 40, 100, buy_chicken_turret_image, True)
-potato_turret_button = Button(WINDOW_WIDTH + 150, 100, buy_potato_turret_image, True)
-cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image, True)
 store_button = Button(WINDOW_WIDTH + shop/4, 10, store_button_image, True)
+chicken_turret_button = Button(store_button.rect.midbottom[0] - 100, store_button.rect.midbottom[1] + 50, buy_chicken_turret_image, True)
+potato_turret_button = Button(store_button.rect.midbottom[0] + 15, store_button.rect.midbottom[1] + 50, buy_potato_turret_image, True)
+cancel_button = Button(WINDOW_WIDTH + 60, 100, cancel_image, True)
 
 menu_button = Button(WINDOW_WIDTH - 130, 10, menu_button_image, True)
 menu_cont_button = Button(WINDOW_WIDTH/2 - 175, 40, menu_cont_image, True)
@@ -141,24 +155,32 @@ while game_running:
         rects = pg.Rect(pt, (32, 32))
         pg.draw.rect(game_screen, 'red', rects, 2)
     # update grps
-    enemy_grp.update()
+    enemy_grp.update(map)
+    turret_grp.update(enemy_grp)
 
     # draw grps
     enemy_grp.draw(game_screen)
     
     for turret in turret_grp:
         turret.draw(game_screen)
-    
+
+    draw_text(str(map.health), text_font, 'red', 0, 0)
+    draw_text(str(map.money), large_font, 'yellow', store_button.rect.midbottom[0], store_button.rect.midbottom[1])
+
     store_button.draw(game_screen)
     
     # draw buttons
     if chicken_turret_button.draw(game_screen):
         placing_turrets = True
         cursor_turret = chicken_turret
+        cursor_turret_name = 'chicken_turret'
+        cursor_animation = chicken_animation
 
     if potato_turret_button.draw(game_screen):
         placing_turrets = True
         cursor_turret = potato_turret
+        cursor_turret_name = 'potato_turret'
+        cursor_animation = potato_animation
     
     if menu_button.draw(game_screen):
         pause_check()
@@ -191,7 +213,8 @@ while game_running:
                 selected_chicken = None
                 clear_selection()
                 if placing_turrets and check:
-                    create_turret(check)
+                    # checks to see if you're broke or not
+                    create_turret(check, cursor_turret_name, cursor_animation)
                 
                 elif not placing_turrets and check:
                     selected_chicken = select_chicken(check)
