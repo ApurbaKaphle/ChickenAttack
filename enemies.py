@@ -7,7 +7,7 @@ class Enemy(pg.sprite.Sprite):
     def __init__(self, name, waypoints, images) -> None:
         
         pg.sprite.Sprite.__init__(self)
-
+        
         # location information
         self.waypoints = waypoints
         self.pos = Vector2(self.waypoints[0])
@@ -46,6 +46,7 @@ class Enemy(pg.sprite.Sprite):
             # enemy is at the end of the path
             self.kill()
             player.health -= self.attack
+            player.tot_kill += 1
 
         dist = self.movement.length()
         # check if distance left is more than enemy speed
@@ -73,3 +74,5 @@ class Enemy(pg.sprite.Sprite):
         if self.health <= 0:
             player.money += self.reward
             self.kill()
+            player.tot_kill += 1
+            print(player.tot_kill)

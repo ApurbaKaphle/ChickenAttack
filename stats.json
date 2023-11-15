@@ -24,7 +24,7 @@
         "final_boss":
             {"attack": 100,
             "health": 200,
-            "speed": 5,
+            "speed": 0.75,
             "reward": 100},
 
         "enemy2":
@@ -41,9 +41,10 @@
     },
 
     "enemy spawn": {
-
+        
         "enemy3": 20,
         "final_boss": 1
+
     }
 
     

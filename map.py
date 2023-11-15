@@ -8,7 +8,7 @@ class Map():
         self.placeables = []
         self.image = map_image
         self.level_data = data
-
+        self.tot_kill = 0
         self.stats = json.load(open('stats.json'))['player']
         self.health = self.stats['health']
         self.money = self.stats['money']
