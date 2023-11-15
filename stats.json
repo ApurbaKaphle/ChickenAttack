@@ -2,17 +2,21 @@
     "player": {
 
         "health": 100,
-        "money": 100
+        "money": 1000
     }, 
-    
-    "turrets": {
-        "chicken turret":
-            {"attack": 10, 
-            "range": 99},
 
-        "potato turret":
-            {"attack": 10,
-            "range": 99}
+    "turrets": {
+        "chicken_turret":
+            {"attack": 10, 
+            "range": 99,
+            "cost": 200,
+            "cooldown": 1000},
+
+        "potato_turret":
+            {"attack": 3,
+            "range": 200,
+            "cost": 100,
+            "cooldown": 500}
     },
 
     "enemies": {
@@ -29,6 +33,11 @@
             {"health": 10,
             "speed": 2}
 
+    },
+
+    "enemy spawn": {
+
+        "enemy1": 15
     }
 
     
