@@ -77,6 +77,7 @@ class Turret(pg.sprite.Sprite):
         for i in range(8):
             img = self.sprite_sheet.subsurface(i*box, 0, box, box)
             animation_list.append(img)
+        animation_list.append(animation_list[0])
         return animation_list
     
     #updating the loaded image
