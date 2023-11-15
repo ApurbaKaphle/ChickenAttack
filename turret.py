@@ -55,7 +55,7 @@ class Turret(pg.sprite.Sprite):
             surface.blit(self.range_image, self.range_rect)
 
     #finding the enemies
-    def targetting(self, enemy_grp):
+    def targeting(self, enemy_grp):
         x_dist = 0
         y_dist = 0
         #check range
@@ -95,4 +95,4 @@ class Turret(pg.sprite.Sprite):
             self.play_animation()
         else:
             if pg.time.get_ticks() - self.last_shot > self.cooldown:
-                self.targetting(enemy_grp)
+                self.targeting(enemy_grp)
