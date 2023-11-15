@@ -59,10 +59,6 @@ pause_width, pause_height = pause_screen.get_size()
 menu_cont_image = pause_screen.subsurface(0, 0, pause_width, pause_height/3)
 menu_settings_image = pause_screen.subsurface(0, pause_height/3, pause_width, pause_height/3)
 menu_quit_image = pause_screen.subsurface(0, 2*pause_height/3, pause_width, pause_height/3)
-
-
-background_fx = pg.mixer.Sound('assets/audio/background.wav')
-background_fx.set_volume(0.01)
 #-------------------------------------------------------Functions-------------------------------------------------------#
 with open('levels/TD_Game/simplified/Level_1/data.json') as file:
     data = json.load(file)
@@ -151,7 +147,6 @@ menu_quit_button = Button(WINDOW_WIDTH/2 - 175, 50 + 2*pause_height/3, menu_quit
 
 #-------------------------------------------------------Game Loop-------------------------------------------------------#
 game_running = True
-background_fx.play()
 
 while game_running:
     clock.tick(FPS)
@@ -160,23 +155,23 @@ while game_running:
 
     map.draw(game_screen)
 
+    # adding points where turrets can be placed
+    for pt in map.placeables:
+        rects = pg.Rect(pt, (32, 32))
+        pg.draw.rect(game_screen, 'red', rects, 2)
+
     # updating game over to 1/0
     if game_over == False:
         if map.health <= 0:
             game_over = True
             game_outcome = -1
+        # update grps
+        enemy_grp.update(map)
+        turret_grp.update(enemy_grp)
 
-    #selecting chicken
-    if selected_chicken:
-        selected_chicken.selected = True
-    
-    # adding points where turrets can be placed
-    for pt in map.placeables:
-        rects = pg.Rect(pt, (32, 32))
-        pg.draw.rect(game_screen, 'red', rects, 2)
-    # update grps
-    enemy_grp.update(map)
-    turret_grp.update(enemy_grp)
+        #selecting chicken
+        if selected_chicken:
+            selected_chicken.selected = True
 
     # draw grps
     enemy_grp.draw(game_screen)
