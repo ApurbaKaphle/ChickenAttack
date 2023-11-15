@@ -75,4 +75,4 @@ class Enemy(pg.sprite.Sprite):
             player.money += self.reward
             self.kill()
             player.tot_kill += 1
-            print(player.tot_kill)
+            

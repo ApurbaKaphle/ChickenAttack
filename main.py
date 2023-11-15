@@ -171,7 +171,7 @@ while game_running:
         if map.health <= 0:
             game_over = True
             game_outcome = -1
-        if map.tot_kill == len(map.enemy_list):
+        elif map.tot_kill == len(map.enemy_list):
             game_over == True
             game_outcome = 1
         # update grps
@@ -195,7 +195,7 @@ while game_running:
 
     #checks to see if you failed
     if game_over == True and game_outcome == -1:
-        print("test2")
+        
         draw_text("You Lose Noob... GET GUD", large_font, 'black', 100, (WINDOW_HEIGHT/2))
         if new_game_button.draw(game_screen):
             #reseting game
