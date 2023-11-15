@@ -1,10 +1,10 @@
 {
-	"identifier": "Store_Button",
-	"uniqueIdentifer": "4adea5e0-6280-11ee-8788-29693e33c8ba",
-	"x": 16,
+	"identifier": "Start_Button",
+	"uniqueIdentifer": "e04363c0-6280-11ee-83f9-e9b15e35f47c",
+	"x": 224,
 	"y": 608,
-	"width": 208,
-	"height": 96,
+	"width": 192,
+	"height": 80,
 	"bgColor": "#696A79",
 	"neighbourLevels": [
 		{
@@ -12,8 +12,8 @@
 			"dir": "n"
 		},
 		{
-			"levelIid": "e04363c0-6280-11ee-83f9-e9b15e35f47c",
-			"dir": "e"
+			"levelIid": "4adea5e0-6280-11ee-8788-29693e33c8ba",
+			"dir": "w"
 		}
 	],
 	"customFields" : {},
