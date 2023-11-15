@@ -2,46 +2,33 @@
     "player": {
 
         "health": 100,
-        "money": 1000
+        "money": 100
     }, 
-
+    
     "turrets": {
-        "chicken_turret":
+        "chicken turret":
             {"attack": 10, 
-            "range": 99,
-            "cost": 200,
-            "cooldown": 1000},
+            "range": 99},
 
-        "potato_turret":
-            {"attack": 3,
-            "range": 200,
-            "cost": 100,
-            "cooldown": 500}
+        "potato turret":
+            {"attack": 10,
+            "range": 99}
     },
 
     "enemies": {
         
-        "final_boss":
-            {"health": 200,
-            "speed": 0.5,
-            "reward": 100},
+        "enemy1":
+            {"health": 20,
+            "speed": 1},
 
         "enemy2":
             {"health": 50,
-            "speed": 0.5,
-            "reward": 500},
+            "speed": 0.5},
 
         "enemy3":
-            {"health": 20,
-            "speed": 2,
-            "reward": 25}
+            {"health": 10,
+            "speed": 2}
 
-    },
-
-    "enemy spawn": {
-
-        "enemy3": 20,
-        "final_boss": 1
     }
 
     

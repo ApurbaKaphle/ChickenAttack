@@ -9,12 +9,9 @@ class Map():
         self.image = map_image
         self.level_data = data
 
-        self.stats = json.load(open('stats.json'))['player']
-        self.health = self.stats['health']
-        self.money = self.stats['money']
-
-        self.enemy_list = []
-        self.spawned_enemies = 0
+        with open('levels/TD_Game/simplified/Level_1/data.json') as file:
+            self.player_stats = json.load(file)
+        self.health = json.load('stats.json')
 
     
 
@@ -37,14 +34,7 @@ class Map():
             ycoord = points['y']
 
             self.placeables.append((xcoord, ycoord))
-    
-    def process_enemies(self):
-        enemies = json.load(open('stats.json'))['enemy spawn']
-        for enemy_type in enemies:
-            enemies_to_spawn = enemies[enemy_type]
-            for enemy in range(enemies_to_spawn):
-                self.enemy_list.append(enemy_type)
-                
+
     def place_check(self, mouse_pos):
         # method to make sure selected tower is being placed inside one of the placeable regions
         
