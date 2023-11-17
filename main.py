@@ -171,9 +171,11 @@ while game_running:
         if map.health <= 0:
             game_over = True
             game_outcome = -1
-        elif map.tot_kill == len(map.enemy_list):
+            print("why")
+        elif map.tot_kill == 21:
             game_over == True
             game_outcome = 1
+            print(game_outcome)
         # update grps
         enemy_grp.update(map)
         turret_grp.update(enemy_grp)
