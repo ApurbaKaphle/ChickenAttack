@@ -194,40 +194,41 @@ while game_running:
     store_button.draw(game_screen)
 
     #checks to see if you failed
-    if game_over == True and game_outcome == -1:
+    if game_over == True:
         
-        draw_text("You Lose Noob... GET GUD", large_font, 'black', 100, (WINDOW_HEIGHT/2))
-        if new_game_button.draw(game_screen):
-            #reseting game
-            game_over = False
-            game_outcome = 0
-            map.health = 100
-            start = False
-            placing_turrets = False
-            selected_chicken = None
-            last_enemy_spawn = pg.time.get_ticks()
-            map = Map(data, level1)
-            map.process_data()
-            map.process_enemies()
-            enemy_grp.empty()
-            turret_grp.empty()
+        if game_outcome == -1:
+            draw_text("You Lose Noob... GET GUD", large_font, 'black', 100, (WINDOW_HEIGHT/2))
+            if new_game_button.draw(game_screen):
+                #reseting game
+                game_over = False
+                game_outcome = 0
+                map.health = 100
+                start = False
+                placing_turrets = False
+                selected_chicken = None
+                last_enemy_spawn = pg.time.get_ticks()
+                map = Map(data, level1)
+                map.process_data()
+                map.process_enemies()
+                enemy_grp.empty()
+                turret_grp.empty()
 
-    elif game_over == True and game_outcome == 1:
-        draw_text("You're the BEST", large_font, 'black', 100, (WINDOW_HEIGHT/2))
-        if new_game_button.draw(game_screen):
-            #reseting game
-            game_over = False
-            game_outcome = 0
-            map.health = 100
-            start = False
-            placing_turrets = False
-            selected_chicken = None
-            last_enemy_spawn = pg.time.get_ticks()
-            map = Map(data, level1)
-            map.process_data()
-            map.process_enemies()
-            enemy_grp.empty()
-            turret_grp.empty()
+        if game_outcome == 1:
+            draw_text("You're the BEST", large_font, 'black', 100, (WINDOW_HEIGHT/2))
+            if new_game_button.draw(game_screen):
+                #reseting game
+                game_over = False
+                game_outcome = 0
+                map.health = 100
+                start = False
+                placing_turrets = False
+                selected_chicken = None
+                last_enemy_spawn = pg.time.get_ticks()
+                map = Map(data, level1)
+                map.process_data()
+                map.process_enemies()
+                enemy_grp.empty()
+                turret_grp.empty()
 
     if game_over == False:
         #time before game//start
