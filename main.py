@@ -172,7 +172,7 @@ while game_running:
             game_over = True
             game_outcome = -1
             print("why")
-        elif map.tot_kill == 21:
+        elif map.tot_kill == len(map.enemy_list):
             game_over = True
             game_outcome = 1
             print(game_outcome)
