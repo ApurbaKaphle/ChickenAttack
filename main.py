@@ -173,7 +173,7 @@ while game_running:
             game_outcome = -1
             print("why")
         elif map.tot_kill == 21:
-            game_over == True
+            game_over = True
             game_outcome = 1
             print(game_outcome)
         # update grps
